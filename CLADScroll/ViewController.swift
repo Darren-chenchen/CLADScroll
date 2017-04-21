@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         
     }
     
-    private func setupVerticalAdView(){
+    fileprivate func setupVerticalAdView(){
         // 初始化数值滚动广告的数据
         let model1:HomeAdModel = HomeAdModel(dict: [:])
         model1.Title2 = "最新"
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         let array2 = [model1,model2]
         let array3 = [array1,array2]
         
-        let adView = CLAdView.showAdView(CGRectMake(50, 50, self.view.frame.size.width-100, 60), dataArray: array3 as NSArray) { (model:HomeAdModel) in
+        let adView = CLAdView.showAdView(CGRect(x: 50, y: 50, width: self.view.frame.size.width-100, height: 60), dataArray: array3 as NSArray) { (model:HomeAdModel) in
             
             // 点击了广告把这条广告对应的模型传递过来
             print("竖直广告对应的模型  这里只打印部分信息===\(model.Title)")
@@ -48,26 +48,26 @@ class ViewController: UIViewController {
 
     }
     
-    private func setupLocalPicture(){
+    fileprivate func setupLocalPicture(){
         
         let lable = UILabel()
-        lable.frame  = CGRectMake(0, 120,self.view.frame.size.width , 20)
-        lable.textAlignment = .Center
+        lable.frame  = CGRect(x: 0, y: 120,width: self.view.frame.size.width , height: 20)
+        lable.textAlignment = .center
         lable.text = "本地图片"
         self.view.addSubview(lable)
         
         let arrayLocal = ["1","2","3"]
-        let localPic = CLPictureScrollView.showPictureViewWithLocal(CGRectMake(0, 150, self.view.frame.size.width, 200), dataArray: arrayLocal as NSArray, cellClick: { (model:HomeAdModel) in
+        let localPic = CLPictureScrollView.showPictureViewWithLocal(CGRect(x: 0, y: 150, width: self.view.frame.size.width, height: 200), dataArray: arrayLocal as NSArray, cellClick: { (model:HomeAdModel) in
         }) as! CLPictureScrollView
         localPic.stopAotuScroll = true
         self.view.addSubview(localPic)
     }
     
-    private func setupNetPicture(){
+    fileprivate func setupNetPicture(){
         
         let lable = UILabel()
-        lable.frame  = CGRectMake(0, 410,self.view.frame.size.width , 10)
-        lable.textAlignment = .Center
+        lable.frame  = CGRect(x: 0, y: 410,width: self.view.frame.size.width , height: 10)
+        lable.textAlignment = .center
         lable.text = "网络图片"
         self.view.addSubview(lable)
 
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
         let model3:HomeAdModel = HomeAdModel(dict: [:])
         model3.Path = "http://7fvaoh.com3.z0.glb.qiniucdn.com/image/151217/40yfp068l.jpg-w720"
         let arrayNet = [model1,model2,model3]
-        let netPic = CLPictureScrollView.showNetPictureViewWithModel(CGRectMake(0, 430, self.view.frame.size.width, 200), dataArray: arrayNet as NSArray) { (model:HomeAdModel) in
+        let netPic = CLPictureScrollView.showNetPictureViewWithModel(CGRect(x: 0, y: 430, width: self.view.frame.size.width, height: 200), dataArray: arrayNet as NSArray) { (model:HomeAdModel) in
             
             print("网络图片轮播图===\(model.Path)")
 

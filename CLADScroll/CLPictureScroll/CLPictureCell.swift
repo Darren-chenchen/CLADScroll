@@ -12,12 +12,12 @@ class CLPictureCell: UICollectionViewCell {
     
     var model = HomeAdModel(dict:[:]) {
         didSet{
-            let url = NSURL(string:model.Path!)
+            let url = URL(string:model.Path!)
             
             if let url = url {
 //                pictureView.kf_setImageWithURL(url, placeholderImage: UIImage(named: ""), optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) in
 //                })
-                pictureView.image = UIImage.init(data: NSData.init(contentsOfURL: url)!)
+                pictureView.image = UIImage.init(data: try! Data.init(contentsOf: url))
             }
         }
     }
@@ -26,15 +26,15 @@ class CLPictureCell: UICollectionViewCell {
             pictureView.image = UIImage(named: localPictureStr)
         }
     }
-    private lazy var pictureView = UIImageView()
+    fileprivate lazy var pictureView = UIImageView()
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         pictureView.frame = self.bounds
-        pictureView.userInteractionEnabled = true
+        pictureView.isUserInteractionEnabled = true
 
         self.contentView.addSubview(pictureView)
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.white
     }
     
     required init?(coder aDecoder: NSCoder) {
